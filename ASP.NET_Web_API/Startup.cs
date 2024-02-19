@@ -1,3 +1,4 @@
+using ASP.NET_Web_API.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,17 +17,17 @@ namespace ASP.NET_Web_API
 {
     public class Startup
     {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        private IConfiguration Configuration { get; } = new ConfigurationBuilder().AddJsonFile("HomeOptions.json").Build();
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.Configure<HomeOptions>(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
