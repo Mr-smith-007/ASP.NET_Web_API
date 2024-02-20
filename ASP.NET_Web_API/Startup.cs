@@ -16,13 +16,7 @@ using System.Threading.Tasks;
 namespace ASP.NET_Web_API
 {
     public class Startup
-    {
-        
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
+    {             
 
         private IConfiguration Configuration { get; } = new ConfigurationBuilder().AddJsonFile("HomeOptions.json").Build();
         public void ConfigureServices(IServiceCollection services)
