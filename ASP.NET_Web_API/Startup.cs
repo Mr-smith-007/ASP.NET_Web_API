@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using ASP.NET_Web_API.Contracts.Validators;
 
 namespace ASP.NET_Web_API
 {
@@ -23,6 +26,8 @@ namespace ASP.NET_Web_API
         private IConfiguration Configuration { get; } = new ConfigurationBuilder().AddJsonFile("HomeOptions.json").Build();
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddDeviceRequestValidator>());
+
             var assembly = Assembly.GetAssembly(typeof(MappingProfile));
             services.AddAutoMapper(assembly);
 
