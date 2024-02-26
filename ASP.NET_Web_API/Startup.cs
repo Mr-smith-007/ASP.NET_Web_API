@@ -1,4 +1,5 @@
 using ASP.NET_Web_API.Configuration;
+using ASP.NET_Web_API.MappingProfiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ASP.NET_Web_API
@@ -21,6 +23,9 @@ namespace ASP.NET_Web_API
         private IConfiguration Configuration { get; } = new ConfigurationBuilder().AddJsonFile("HomeOptions.json").Build();
         public void ConfigureServices(IServiceCollection services)
         {
+            var assembly = Assembly.GetAssembly(typeof(MappingProfile));
+            services.AddAutoMapper(assembly);
+
             services.Configure<HomeOptions>(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
