@@ -9,21 +9,9 @@ using System.Threading.Tasks;
 namespace ASP.NET_Web_API.Contracts.Validators
 {
     public class AddDeviceRequestValidator : AbstractValidator<AddDeviceRequest>
-    {
-        string[] _validLocations;
-
+    {        
         public AddDeviceRequestValidator()
-        {
-            _validLocations = new[]
-            {
-           "Kitchen",
-           "Bathroom",
-           "Livingroom",
-           "Toilet"
-            };
-            
-
-            
+        {                             
             RuleFor(x => x.Name).NotEmpty(); 
             RuleFor(x => x.Manufacturer).NotEmpty();
             RuleFor(x => x.Model).NotEmpty();
@@ -32,13 +20,13 @@ namespace ASP.NET_Web_API.Contracts.Validators
             RuleFor(x => x.GasUsage).NotNull();
             RuleFor(x => x.Location).NotEmpty()
                 .Must(BeSupported)
-                .WithMessage($"Please choose one of the following locations: {string.Join(", ", _validLocations)}");
+                .WithMessage($"Please choose one of the following locations: {string.Join(", ", Values.ValidRooms)}");
         }
 
 
         private bool BeSupported(string location)
         {
-            return _validLocations.Any(e => e == location);
+            return Values.ValidRooms.Any(e => e == location);
         }
     }
 }
