@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using AutoMapper;
 using ASP.NET_Web_API.Contracts.Devices;
+using ASP.NET_Web_API.Data.Repos;
 
 
 namespace ASP.NET_Web_API.Controllers
@@ -18,13 +19,15 @@ namespace ASP.NET_Web_API.Controllers
     [Route("[controller]")]
     public class DevicesController : ControllerBase
     {
-        private IOptions<HomeOptions> _options;
+        private IDeviceRepository _devices;
+        private IRoomRepository _rooms;
         private IMapper _mapper;
-        public DevicesController(IOptions<HomeOptions> options, IMapper mapper)
-        {
-            _options = options;
-            _mapper = mapper;
 
+        public DevicesController(IDeviceRepository devices, IRoomRepository rooms, IMapper mapper)
+        {
+            _devices = devices;
+            _rooms = rooms;
+            _mapper = mapper;
         }
 
         [HttpGet]
