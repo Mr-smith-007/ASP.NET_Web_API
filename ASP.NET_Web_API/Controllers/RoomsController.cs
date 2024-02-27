@@ -21,9 +21,8 @@ namespace ASP.NET_Web_API.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-
-        //TODO: Задание - добавить метод на получение всех существующих комнат
-                
+        
+        
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> Add([FromBody] AddRoomRequest request)
