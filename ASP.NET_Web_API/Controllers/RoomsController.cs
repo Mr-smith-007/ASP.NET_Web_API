@@ -37,6 +37,8 @@ namespace ASP.NET_Web_API.Controllers
 
             return StatusCode(409, $"Ошибка: Комната {request.Name} уже существует.");
         }
+
+
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] EditRoomRequest request)

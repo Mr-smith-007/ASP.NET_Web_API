@@ -12,5 +12,6 @@ namespace ASP.NET_Web_API.Contracts.Models.Rooms
         public int Area { get; set; }
         public bool GasConnected { get; set; }
         public int Voltage { get; set; }
+
     }
 }
