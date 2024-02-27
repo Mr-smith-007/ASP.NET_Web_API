@@ -18,7 +18,7 @@ namespace ASP.NET_Web_API.Contracts.Validators
             RuleFor(x => x.SerialNumber).NotEmpty();
             RuleFor(x => x.CurrentVolts).NotEmpty().InclusiveBetween(120, 220); 
             RuleFor(x => x.GasUsage).NotNull();
-            RuleFor(x => x.Location).NotEmpty()
+            RuleFor(x => x.RoomLocation).NotEmpty()
                 .Must(BeSupported)
                 .WithMessage($"Please choose one of the following locations: {string.Join(", ", Values.ValidRooms)}");
         }
